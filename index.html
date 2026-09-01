@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>✨ Zuzana & Danny - Emerald Anniversary ✨</title>
+    
+    <!-- Google Fonts Premium -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:wght@300;400;600;700&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <!-- ===== PRELOADER ===== -->
+    <div id="preloader">
+        <div class="preloader-ring"></div>
+        <div class="preloader-text">✨</div>
+    </div>
+
+    <!-- ===== BACKGROUND PARTICLES ===== -->
+    <canvas id="particlesCanvas"></canvas>
+
+    <!-- ===== MAIN CONTAINER ===== -->
+    <div class="container" id="app">
+
+        <!-- ===== AMPLOP ===== -->
+        <div class="envelope-section" id="envelopeSection">
+            <div class="envelope-wrapper" id="envelopeWrapper">
+                <div class="envelope-glow"></div>
+                <div class="envelope" id="envelope">
+                    <div class="envelope-flap"></div>
+                    <div class="envelope-seal">✦</div>
+                    <div class="envelope-address">
+                        <span>Zuzana &amp; Danny</span>
+                        <small>60th &amp; 1st Anniversary</small>
+                    </div>
+                </div>
+                <div class="envelope-hint">
+                    <span>Klik untuk membuka</span>
+                    <i class="fas fa-chevron-down bounce-arrow"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== KONTEN UTAMA ===== -->
+        <div class="content" id="mainContent">
+
+            <!-- HEADER DECORATIVE -->
+            <div class="content-header">
+                <div class="ornament-line"></div>
+                <h1 class="title-main">
+                    <span class="gold">✦</span>
+                    Zuzana &amp; Danny
+                    <span class="gold">✦</span>
+                </h1>
+                <p class="subtitle">60<sup>th</sup> Birthday &amp; 1<sup>st</sup> Anniversary</p>
+                <div class="ornament-line"></div>
+            </div>
+
+            <!-- TYPING TEXT -->
+            <div class="card glass typing-card">
+                <div class="typing-area" id="typingArea">
+                    <div id="typingText"></div>
+                </div>
+            </div>
+
+            <!-- TOMBOL NEXT -->
+            <button class="btn-primary btn-next" id="btnNext">
+                <span>Lanjutkan ke Galeri</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+
+            <!-- GALERI FOTO -->
+            <div class="card glass gallery-card">
+                <div class="gallery-wrapper">
+                    <div class="gallery-container" id="galleryContainer">
+                        <div class="gallery-track" id="galleryTrack">
+                            <!-- Foto akan diisi oleh JS -->
+                        </div>
+                        <button class="gallery-btn prev" id="prevBtn">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <button class="gallery-btn next" id="nextBtn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="gallery-indicators" id="galleryIndicators"></div>
+                    <div class="gallery-timer">
+                        <div class="timer-bar" id="timerBar"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MUSIC PLAYER PREMIUM -->
+            <div class="card glass music-card">
+                <div class="music-player">
+                    <div class="music-cover">
+                        <i class="fas fa-music"></i>
+                        <div class="music-wave" id="musicWave">
+                            <span></span><span></span><span></span>
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                    <div class="music-info">
+                        <div class="music-title">Melody of Love</div>
+                        <div class="music-artist">~ For Zuzana &amp; Danny ~</div>
+                        <div class="music-progress">
+                            <div class="progress-bar" id="progressBar">
+                                <div class="progress-fill" id="progressFill"></div>
+                            </div>
+                            <div class="music-time">
+                                <span id="currentTime">0:00</span>
+                                <span id="totalTime">0:00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="music-btn" id="musicToggle">
+                        <i class="fas fa-play" id="musicIcon"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- DETAIL ACARA -->
+            <div class="card glass event-card">
+                <div class="event-header">
+                    <i class="fas fa-calendar-alt event-icon"></i>
+                    <h3>Detail Acara</h3>
+                </div>
+                <div class="event-grid">
+                    <div class="event-item">
+                        <i class="fas fa-calendar-day"></i>
+                        <div>
+                            <strong>Hari &amp; Tanggal</strong>
+                            <p>Sabtu, 2 September 2026</p>
+                        </div>
+                    </div>
+                    <div class="event-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Waktu</strong>
+                            <p>19.00 - Selesai</p>
+                        </div>
+                    </div>
+                    <div class="event-item">
+                        <i class="fas fa-map-pin"></i>
+                        <div>
+                            <strong>Tempat</strong>
+                            <p>Emerald Ballroom, Grand Hotel</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="btn-maps" id="mapsBtn" target="_blank">
+                    <i class="fas fa-map-marked-alt"></i>
+                    Buka di Google Maps
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+
+            <!-- FOOTER -->
+            <div class="footer">
+                <p>Made with <i class="fas fa-heart" style="color: #50c878;"></i> for Zuzana &amp; Danny</p>
+                <div class="footer-ornaments">✦ ✦ ✦</div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===== CONFETTI ===== -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
