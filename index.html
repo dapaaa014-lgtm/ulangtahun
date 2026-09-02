@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>✨ Zuzana & Danny - Emerald Anniversary ✨</title>
+    <title>💎 Zuzana & Danny - Emerald Blue Anniversary</title>
     
     <!-- Google Fonts Premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,11 +20,14 @@
     <!-- ===== PRELOADER ===== -->
     <div id="preloader">
         <div class="preloader-ring"></div>
-        <div class="preloader-text">✨</div>
+        <div class="preloader-text">💎</div>
     </div>
 
-    <!-- ===== BACKGROUND PARTICLES ===== -->
-    <canvas id="particlesCanvas"></canvas>
+    <!-- ===== BACKGROUND BLUR SLIDESHOW ===== -->
+    <div class="bg-slideshow" id="bgSlideshow">
+        <!-- Background akan diisi JS dengan efek blur -->
+    </div>
+    <div class="bg-overlay"></div>
 
     <!-- ===== MAIN CONTAINER ===== -->
     <div class="container" id="app">
@@ -33,13 +36,16 @@
         <div class="envelope-section" id="envelopeSection">
             <div class="envelope-wrapper" id="envelopeWrapper">
                 <div class="envelope-glow"></div>
-                <div class="envelope" id="envelope">
-                    <div class="envelope-flap"></div>
-                    <div class="envelope-seal">✦</div>
-                    <div class="envelope-address">
-                        <span>Zuzana &amp; Danny</span>
-                        <small>60th &amp; 1st Anniversary</small>
+                <div class="envelope-3d" id="envelope3d">
+                    <div class="envelope-body">
+                        <div class="envelope-flap"></div>
+                        <div class="envelope-seal">✦</div>
+                        <div class="envelope-address">
+                            <span>Zuzana &amp; Danny</span>
+                            <small>60th &amp; 1st Anniversary</small>
+                        </div>
                     </div>
+                    <div class="envelope-shadow"></div>
                 </div>
                 <div class="envelope-hint">
                     <span>Klik untuk membuka</span>
@@ -76,19 +82,13 @@
                 <i class="fas fa-arrow-right"></i>
             </button>
 
-            <!-- GALERI FOTO -->
+            <!-- GALERI FOTO (tanpa tombol) -->
             <div class="card glass gallery-card">
                 <div class="gallery-wrapper">
                     <div class="gallery-container" id="galleryContainer">
                         <div class="gallery-track" id="galleryTrack">
                             <!-- Foto akan diisi oleh JS -->
                         </div>
-                        <button class="gallery-btn prev" id="prevBtn">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button class="gallery-btn next" id="nextBtn">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
                     </div>
                     <div class="gallery-indicators" id="galleryIndicators"></div>
                     <div class="gallery-timer">
@@ -164,7 +164,7 @@
 
             <!-- FOOTER -->
             <div class="footer">
-                <p>Made with <i class="fas fa-heart" style="color: #50c878;"></i> for Zuzana &amp; Danny</p>
+                <p>Made with <i class="fas fa-heart" style="color: #3BA6C7;"></i> for Zuzana &amp; Danny</p>
                 <div class="footer-ornaments">✦ ✦ ✦</div>
             </div>
 
