@@ -8,7 +8,7 @@ const fotoUrls = [
     'https://n.uguu.se/YzRcrYdY.jpeg',
     'https://d.uguu.se/bpKEOPaX.jpeg',
     'https://n.uguu.se/hbvuBwZy.jpeg',
-    'https://h.uguu.se/ZwtOppby.jpeg'
+    'https://h.uguu.se/bBdPiwpf.jpeg'
 ];
 
 // --- TEKS TYPING ---
