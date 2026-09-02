@@ -27,7 +27,7 @@ may your journey be blessed with light."
 const mapsLink = 'https://www.google.com/maps?q=Grand+Hotel+Jakarta';
 
 // --- URL LAGU (upload ke Catbox) ---
-const musicUrl = 'https://files.catbox.moe/qlknik.mp3';
+const musicUrl = 'https://d.uguu.se/yaokDvtL.mp3';
 
 // ============================================================
 // 2. PRELOADER
