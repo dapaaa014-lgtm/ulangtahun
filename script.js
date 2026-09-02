@@ -12,7 +12,7 @@ const fotoUrls = [
 ];
 
 // --- TEKS TYPING ---
-const typingContent = `💌 From Zuzana Ilona and Danny Boy
+const typingContent = `💌 From Zuzana Ilona and Dany Boy
 
 Happy 60th Birthday & 1st Anniversary!
 
