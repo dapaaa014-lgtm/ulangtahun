@@ -34,7 +34,8 @@ const musicUrl = 'https://files.catbox.moe/qlknik.mp3';
 // ============================================================
 window.addEventListener('load', () => {
     setTimeout(() => {
-        document.getElementById('preloader').classList.add('hide');
+        const preloader = document.getElementById('preloader');
+        if (preloader) preloader.classList.add('hide');
     }, 1000);
 });
 
@@ -45,7 +46,7 @@ let bgIndex = 0;
 const bgElement = document.getElementById('bgSlideshow');
 
 function changeBackground() {
-    if (fotoUrls.length === 0) return;
+    if (!bgElement || fotoUrls.length === 0) return;
     bgElement.style.backgroundImage = `url(${fotoUrls[bgIndex]})`;
     bgIndex = (bgIndex + 1) % fotoUrls.length;
 }
@@ -59,48 +60,59 @@ setInterval(changeBackground, 10000);
 // 4. AMPLOP - IMPROVED
 // ============================================================
 const envelopeSection = document.getElementById('envelopeSection');
-const envelopeBody = document.querySelector('.envelope-body');
+const envelopeBody = document.getElementById('envelopeBody');
 const mainContent = document.getElementById('mainContent');
 
 let isEnvelopeOpen = false;
 
-envelopeSection.addEventListener('click', () => {
-    if (isEnvelopeOpen) return;
-    isEnvelopeOpen = true;
-    
-    // Buka amplop dengan animasi
-    envelopeBody.classList.add('open');
-    
-    // Efek shadow
-    const shadow = document.querySelector('.envelope-shadow');
-    if (shadow) {
-        shadow.style.width = '60%';
-        shadow.style.opacity = '0.4';
-    }
-    
-    // Sembunyikan hint
-    document.querySelector('.envelope-hint').style.opacity = '0';
-    
-    setTimeout(() => {
-        envelopeSection.classList.add('hide');
-        mainContent.classList.add('active');
-        startTyping();
-        initGallery();
-        document.getElementById('mapsBtn').href = mapsLink;
+if (envelopeSection) {
+    envelopeSection.addEventListener('click', () => {
+        if (isEnvelopeOpen) return;
+        isEnvelopeOpen = true;
         
-        // Mulai musik
-        audio.play().catch(() => {});
+        // Buka amplop dengan animasi
+        if (envelopeBody) envelopeBody.classList.add('open');
         
-        // Confetti
-        launchConfetti();
-    }, 1200);
-});
+        // Efek shadow
+        const shadow = document.querySelector('.envelope-shadow');
+        if (shadow) {
+            shadow.style.width = '60%';
+            shadow.style.opacity = '0.4';
+        }
+        
+        // Sembunyikan hint
+        const hint = document.querySelector('.envelope-hint');
+        if (hint) hint.style.opacity = '0';
+        
+        setTimeout(() => {
+            if (envelopeSection) envelopeSection.classList.add('hide');
+            if (mainContent) mainContent.classList.add('active');
+            startTyping();
+            initGallery();
+            
+            const mapsBtn = document.getElementById('mapsBtn');
+            if (mapsBtn) mapsBtn.href = mapsLink;
+            
+            // Mulai musik dengan handling error
+            if (audio) {
+                audio.play().catch(() => {
+                    console.log('ℹ️ Klik tombol play untuk memutar musik');
+                });
+            }
+            
+            // Confetti
+            launchConfetti();
+        }, 1200);
+    });
+}
 
 // ============================================================
 // 5. TYPING EFFECT
 // ============================================================
 function startTyping() {
     const container = document.getElementById('typingText');
+    if (!container) return;
+    
     let index = 0;
     container.innerHTML = '';
 
@@ -127,7 +139,7 @@ function startTyping() {
 }
 
 // ============================================================
-// 6. GALERI FOTO - Tanpa Tombol Navigasi
+// 6. GALERI FOTO
 // ============================================================
 let currentIndex = 0;
 let slideTimer = null;
@@ -140,6 +152,8 @@ const indicators = document.getElementById('galleryIndicators');
 const timerBar = document.getElementById('timerBar');
 
 function initGallery() {
+    if (!track || !indicators || fotoUrls.length === 0) return;
+    
     // Render foto
     track.innerHTML = '';
     fotoUrls.forEach(url => {
@@ -165,7 +179,7 @@ function initGallery() {
 
 function goToSlide(index) {
     const total = fotoUrls.length;
-    if (total === 0) return;
+    if (total === 0 || !track) return;
     if (index < 0) index = total - 1;
     if (index >= total) index = 0;
     currentIndex = index;
@@ -174,7 +188,8 @@ function goToSlide(index) {
     track.style.transform = `translateX(-${currentIndex * 100}%)`;
 
     // Update indicators
-    document.querySelectorAll('.gallery-indicators span').forEach((dot, i) => {
+    const dots = document.querySelectorAll('.gallery-indicators span');
+    dots.forEach((dot, i) => {
         dot.classList.toggle('active', i === currentIndex);
     });
 
@@ -184,6 +199,8 @@ function goToSlide(index) {
 function resetTimer() {
     if (slideTimer) clearTimeout(slideTimer);
     if (progressInterval) clearInterval(progressInterval);
+    if (!timerBar) return;
+    
     timerProgress = 0;
     timerBar.style.width = '0%';
 
@@ -204,10 +221,9 @@ function resetTimer() {
 }
 
 // ============================================================
-// 7. MUSIC PLAYER
+// 7. MUSIC PLAYER - FIXED
 // ============================================================
-const audio = new Audio(musicUrl);
-audio.loop = true;
+let audio = null;
 let isMusicPlaying = false;
 
 const musicToggle = document.getElementById('musicToggle');
@@ -216,58 +232,130 @@ const progressFill = document.getElementById('progressFill');
 const currentTimeEl = document.getElementById('currentTime');
 const totalTimeEl = document.getElementById('totalTime');
 const musicWave = document.getElementById('musicWave');
+const musicTitle = document.getElementById('musicTitle');
+const musicArtist = document.getElementById('musicArtist');
 
-audio.addEventListener('loadedmetadata', () => {
-    totalTimeEl.textContent = formatTime(audio.duration);
-});
-
-audio.addEventListener('timeupdate', () => {
-    if (audio.duration) {
-        const pct = (audio.currentTime / audio.duration) * 100;
-        progressFill.style.width = pct + '%';
-        currentTimeEl.textContent = formatTime(audio.currentTime);
+// Inisialisasi audio
+function initAudio() {
+    try {
+        audio = new Audio(musicUrl);
+        audio.loop = true;
+        
+        audio.addEventListener('canplaythrough', () => {
+            console.log('✅ Audio siap diputar!');
+            if (musicTitle) musicTitle.textContent = '🎵 Beautiful And White';
+            if (musicArtist) musicArtist.textContent = '~ For Zuzana & Danny ~';
+        });
+        
+        audio.addEventListener('loadedmetadata', () => {
+            if (totalTimeEl) {
+                totalTimeEl.textContent = formatTime(audio.duration);
+            }
+        });
+        
+        audio.addEventListener('timeupdate', () => {
+            if (audio.duration && progressFill && currentTimeEl) {
+                const pct = (audio.currentTime / audio.duration) * 100;
+                progressFill.style.width = pct + '%';
+                currentTimeEl.textContent = formatTime(audio.currentTime);
+            }
+        });
+        
+        audio.addEventListener('play', () => {
+            isMusicPlaying = true;
+            if (musicIcon) musicIcon.className = 'fas fa-pause';
+            if (musicWave) musicWave.classList.remove('paused');
+        });
+        
+        audio.addEventListener('pause', () => {
+            isMusicPlaying = false;
+            if (musicIcon) musicIcon.className = 'fas fa-play';
+            if (musicWave) musicWave.classList.add('paused');
+        });
+        
+        audio.addEventListener('error', (e) => {
+            console.error('❌ Error loading audio:', e);
+            if (musicTitle) musicTitle.textContent = '⚠️ Gagal memuat lagu';
+            if (musicArtist) musicArtist.textContent = 'Cek URL di script.js';
+        });
+        
+    } catch (error) {
+        console.error('❌ Gagal membuat audio:', error);
     }
-});
+}
 
-audio.addEventListener('play', () => {
-    isMusicPlaying = true;
-    musicIcon.className = 'fas fa-pause';
-    musicWave.classList.remove('paused');
-});
+// Panggil init
+initAudio();
 
-audio.addEventListener('pause', () => {
-    isMusicPlaying = false;
-    musicIcon.className = 'fas fa-play';
-    musicWave.classList.add('paused');
-});
+// Tombol Play/Pause
+if (musicToggle) {
+    musicToggle.addEventListener('click', () => {
+        if (!audio) return;
+        
+        if (isMusicPlaying) {
+            audio.pause();
+        } else {
+            audio.play().catch(() => {
+                console.log('ℹ️ Klik lagi untuk memutar');
+            });
+        }
+    });
+}
 
-musicToggle.addEventListener('click', () => {
-    if (isMusicPlaying) {
-        audio.pause();
-    } else {
-        audio.play().catch(() => {});
-    }
-});
-
-document.querySelector('.progress-bar').addEventListener('click', (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const pct = (e.clientX - rect.left) / rect.width;
-    if (audio.duration) {
+// Progress bar click
+const progressBar = document.querySelector('.progress-bar');
+if (progressBar) {
+    progressBar.addEventListener('click', (e) => {
+        if (!audio || !audio.duration) return;
+        const rect = e.currentTarget.getBoundingClientRect();
+        const pct = (e.clientX - rect.left) / rect.width;
         audio.currentTime = pct * audio.duration;
-    }
-});
+    });
+}
 
+// Format time
 function formatTime(seconds) {
+    if (isNaN(seconds) || !isFinite(seconds) || seconds < 0) return '0:00';
     const m = Math.floor(seconds / 60);
     const s = Math.floor(seconds % 60);
     return m + ':' + (s < 10 ? '0' : '') + s;
 }
 
 // ============================================================
-// 8. CONFETTI CELEBRATION
+// 8. REFRESH MUSIK
+// ============================================================
+const refreshBtn = document.getElementById('refreshMusicBtn');
+if (refreshBtn) {
+    refreshBtn.addEventListener('click', () => {
+        console.log('🔄 Merefresh musik...');
+        if (audio) {
+            audio.pause();
+            audio.currentTime = 0;
+            audio.src = musicUrl;
+            audio.load();
+            
+            setTimeout(() => {
+                audio.play().then(() => {
+                    isMusicPlaying = true;
+                    if (musicIcon) musicIcon.className = 'fas fa-pause';
+                    if (musicWave) musicWave.classList.remove('paused');
+                    if (musicTitle) musicTitle.textContent = '🎵 Beautiful And White';
+                    console.log('✅ Musik berhasil di-refresh!');
+                }).catch(() => {
+                    console.log('ℹ️ Klik tombol play untuk memutar');
+                });
+            }, 500);
+        }
+    });
+}
+
+// ============================================================
+// 9. CONFETTI CELEBRATION
 // ============================================================
 function launchConfetti() {
     const canvasConf = document.getElementById('confettiCanvas');
+    if (!canvasConf) return;
+    
     const ctxConf = canvasConf.getContext('2d');
     canvasConf.width = window.innerWidth;
     canvasConf.height = window.innerHeight;
@@ -335,17 +423,23 @@ function launchConfetti() {
 }
 
 // ============================================================
-// 9. TOMBOL NEXT - Scroll ke Galeri
+// 10. TOMBOL NEXT - Scroll ke Galeri
 // ============================================================
-document.getElementById('btnNext').addEventListener('click', () => {
-    document.querySelector('.gallery-card').scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'center' 
+const btnNext = document.getElementById('btnNext');
+if (btnNext) {
+    btnNext.addEventListener('click', () => {
+        const gallery = document.querySelector('.gallery-card');
+        if (gallery) {
+            gallery.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center' 
+            });
+        }
     });
-});
+}
 
 // ============================================================
-// 10. RESIZE HANDLER
+// 11. RESIZE HANDLER
 // ============================================================
 window.addEventListener('resize', () => {
     const canvasConf = document.getElementById('confettiCanvas');
@@ -355,10 +449,11 @@ window.addEventListener('resize', () => {
     }
 });
 
-console.log('💎 Emerald Blue Elegance siap!');
-console.log('🎵 Upload musik ke Catbox dan isi musicUrl');
-console.log('📸 Upload foto ke Catbox dan isi fotoUrls');
-
-console.log('✨ Emerald Elegance Undangan siap! ✨');
-console.log('🎵 Upload musik ke Catbox dan isi musicUrl');
-console.log('📸 Upload foto ke Catbox dan isi fotoUrls');
+// ============================================================
+// 12. LOG
+// ============================================================
+console.log('💎 Emerald Blue Elegance v2.0 - FINAL');
+console.log('📸 Foto: ' + fotoUrls.length + ' foto siap');
+console.log('🎵 Musik: ' + musicUrl);
+console.log('📍 Maps: ' + mapsLink);
+console.log('✨ Semua bug telah diperbaiki!');
