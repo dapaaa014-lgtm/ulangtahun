@@ -24,9 +24,7 @@
     </div>
 
     <!-- ===== BACKGROUND BLUR SLIDESHOW ===== -->
-    <div class="bg-slideshow" id="bgSlideshow">
-        <!-- Background akan diisi JS dengan efek blur -->
-    </div>
+    <div class="bg-slideshow" id="bgSlideshow"></div>
     <div class="bg-overlay"></div>
 
     <!-- ===== MAIN CONTAINER ===== -->
@@ -37,7 +35,7 @@
             <div class="envelope-wrapper" id="envelopeWrapper">
                 <div class="envelope-glow"></div>
                 <div class="envelope-3d" id="envelope3d">
-                    <div class="envelope-body">
+                    <div class="envelope-body" id="envelopeBody">
                         <div class="envelope-flap"></div>
                         <div class="envelope-seal">✦</div>
                         <div class="envelope-address">
@@ -48,7 +46,7 @@
                     <div class="envelope-shadow"></div>
                 </div>
                 <div class="envelope-hint">
-                    <span>Click to open</span>
+                    <span>✨ Click to Open ✨</span>
                     <i class="fas fa-chevron-down bounce-arrow"></i>
                 </div>
             </div>
@@ -76,13 +74,17 @@
                 </div>
             </div>
 
-            <!-- GALERI FOTO (tanpa tombol) -->
+            <!-- TOMBOL NEXT -->
+            <button class="btn-primary btn-next" id="btnNext">
+                <span>✨ Lanjutkan ke Galeri</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+
+            <!-- GALERI FOTO -->
             <div class="card glass gallery-card">
                 <div class="gallery-wrapper">
                     <div class="gallery-container" id="galleryContainer">
-                        <div class="gallery-track" id="galleryTrack">
-                            <!-- Foto akan diisi oleh JS -->
-                        </div>
+                        <div class="gallery-track" id="galleryTrack"></div>
                     </div>
                     <div class="gallery-indicators" id="galleryIndicators"></div>
                     <div class="gallery-timer">
@@ -102,8 +104,8 @@
                         </div>
                     </div>
                     <div class="music-info">
-                        <div class="music-title">Beatiful And White</div>
-                        <div class="music-artist">~ For Zuzana &amp; Danny ~</div>
+                        <div class="music-title" id="musicTitle">🎵 Beautiful And White</div>
+                        <div class="music-artist" id="musicArtist">~ For Zuzana &amp; Danny ~</div>
                         <div class="music-progress">
                             <div class="progress-bar" id="progressBar">
                                 <div class="progress-fill" id="progressFill"></div>
@@ -118,13 +120,29 @@
                         <i class="fas fa-play" id="musicIcon"></i>
                     </button>
                 </div>
+                <!-- Tombol Refresh -->
+                <div style="text-align:center; margin-top:10px;">
+                    <button id="refreshMusicBtn" style="
+                        background: rgba(255,255,255,0.05);
+                        border: 1px solid rgba(255,255,255,0.08);
+                        color: rgba(255,255,255,0.3);
+                        padding: 4px 14px;
+                        border-radius: 20px;
+                        font-size: 11px;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        font-family: 'Inter', sans-serif;
+                    ">
+                        🔄 Refresh Musik
+                    </button>
+                </div>
             </div>
 
             <!-- DETAIL ACARA -->
             <div class="card glass event-card">
                 <div class="event-header">
                     <i class="fas fa-calendar-alt event-icon"></i>
-                    <h3>Event Details</h3>
+                    <h3>✨ Event Details</h3>
                 </div>
                 <div class="event-grid">
                     <div class="event-item">
