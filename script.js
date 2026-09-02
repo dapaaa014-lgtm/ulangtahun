@@ -4,11 +4,11 @@
 
 // --- FOTO (isi dengan URL Catbox) ---
 const fotoUrls = [
-    'https://d.uguu.se/OqpEHXAH.jpeg',
-    'https://n.uguu.se/YzRcrYdY.jpeg',
-    'https://d.uguu.se/bpKEOPaX.jpeg',
-    'https://n.uguu.se/hbvuBwZy.jpeg',
-    'https://h.uguu.se/bBdPiwpf.jpeg'
+    'https://files.catbox.moe/75feyi.jpg',
+    'https://files.catbox.moe/gd7xgu.jpg',
+    'https://files.catbox.moe/cdj92f.jpg',
+    'https://files.catbox.moe/okfjsl.jpg',
+    'https://files.catbox.moe/rn76te.jpg'
 ];
 
 // --- TEKS TYPING ---
@@ -27,7 +27,7 @@ and our 1 Years th Wedding Anniversary
 const mapsLink = 'https://maps.app.goo.gl/FqYoiup89cz4tsjY7?g_st=ic';
 
 // --- URL LAGU (upload ke Catbox) ---
-const musicUrl = 'https://d.uguu.se/yaokDvtL.mp3';
+const musicUrl = 'https://videotourl.com/audio/1788390872048-51bf9026-7b70-44ae-b41b-a88ecaf69118.mp3';
 
 // ============================================================
 // 2. PRELOADER
