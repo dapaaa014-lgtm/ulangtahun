@@ -14,14 +14,13 @@ const fotoUrls = [
 // --- TEKS TYPING ---
 const typingContent = `💌 From Zuzana Ilona and Dany Boy
 
-Happy 60th Birthday & 1st Anniversary!
+Please join us in celebration
 
-We have two amazing reasons to celebrate, 
-and we want you there with us!Please join us as
-we celebrate Zuzana Ilona’s 60th Birthday
-and our 1 Years th Wedding Anniversary
+Zuzana Ilona Birthday
+        and 
+*1th Wedding Anniversary*
 
-~ We look forward to your presence.`;
+~ your presence is our joy.`;
 
 // --- LINK GOOGLE MAPS ---
 const mapsLink = 'https://maps.app.goo.gl/FqYoiup89cz4tsjY7?g_st=ic';
