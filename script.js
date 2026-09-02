@@ -4,27 +4,27 @@
 
 // --- FOTO (isi dengan URL Catbox) ---
 const fotoUrls = [
-    'https://files.catbox.moe/example1.jpg',
-    'https://files.catbox.moe/example2.jpg',
-    'https://files.catbox.moe/example3.jpg',
-    'https://files.catbox.moe/example4.jpg',
-    'https://files.catbox.moe/example5.jpg'
+    'https://d.uguu.se/OqpEHXAH.jpeg',
+    'https://n.uguu.se/YzRcrYdY.jpeg',
+    'https://d.uguu.se/bpKEOPaX.jpeg',
+    'https://n.uguu.se/hbvuBwZy.jpeg',
+    'https://h.uguu.se/ZwtOppby.jpeg'
 ];
 
 // --- TEKS TYPING ---
-const typingContent = `💌 Untuk Zuzana Ilona & Danny Boy tercinta...
+const typingContent = `💌 From Zuzana Ilona and Danny Boy
 
-Selamat Ulang Tahun ke-60 & 1 Year Anniversary!
+Happy 60th Birthday & 1st Anniversary!
 
-"Emerald blue love shines bright,
-through sixty years of life,
-and one year of togetherness,
-may your journey be blessed with light."
+We have two amazing reasons to celebrate, 
+and we want you there with us!Please join us as
+we celebrate Zuzana Ilona’s 60th Birthday
+and our 1 Years th Wedding Anniversary
 
-~ Dengan cinta, Keluarga & Sahabat ~`;
+~ We look forward to your presence.`;
 
 // --- LINK GOOGLE MAPS ---
-const mapsLink = 'https://www.google.com/maps?q=Grand+Hotel+Jakarta';
+const mapsLink = 'https://maps.app.goo.gl/FqYoiup89cz4tsjY7?g_st=ic';
 
 // --- URL LAGU (upload ke Catbox) ---
 const musicUrl = 'https://d.uguu.se/yaokDvtL.mp3';
