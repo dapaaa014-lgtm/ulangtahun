@@ -18,7 +18,7 @@ Please join us in celebration
 
 Zuzana Ilona Birthday
         and 
-1 th Wedding Anniversary
+1<sup>st</sup> Wedding Anniversary
 
 ~ your presence is our joy.`;
 
