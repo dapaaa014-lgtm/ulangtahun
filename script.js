@@ -6,7 +6,7 @@
 const fotoUrls = [
     'https://files.catbox.moe/75feyi.jpg',
     'https://files.catbox.moe/gd7xgu.jpg',
-    'https://files.catbox.moe/cdj92f.jpg',
+    'https://files.catbox.moe/t7gp6k.jpg',
     'https://files.catbox.moe/okfjsl.jpg',
     'https://files.catbox.moe/rn76te.jpg'
 ];
