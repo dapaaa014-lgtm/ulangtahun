@@ -16,7 +16,7 @@ const typingContent = `💌 From Zuzana Ilona and Dany Boy
 
 Please join us in celebration
 
-Zuzana Ilona Birthday
+Zuzana Ilona's Birthday
         and 
 1ˢᵗ Wedding Anniversary
 
